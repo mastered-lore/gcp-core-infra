@@ -264,7 +264,7 @@ gcloud beta billing accounts add-iam-policy-binding $FAST_BILLING_ACCOUNT_ID \
 
 This configuration is possible but unsupported and only present for development purposes, use at your own risk:
 
-- configure `billing_account.id` as `null` and `billing.no_iam` to `true` in your `tfvars` file
+- configure `billing_account.id` as `null` and `billing_account.no_iam` to `true` in your `tfvars` file
 - apply with `terraform apply -target 'module.automation-project.google_project.project[0]'` in addition to the initial user variable
 - once Terraform raises an error run `terraform untaint 'module.automation-project.google_project.project[0]'`
 - repeat the two steps above for `'module.log-export-project.google_project.project[0]'`
@@ -331,7 +331,7 @@ prefix = "abcd"
 
 Each foundational FAST stage generates provider configurations and variable files can be consumed by the following stages, and saves them in a dedicated GCS bucket in the automation project. These files are a handy way to simplify stage configuration, and are also used by our CI/CD workflows to configure the repository files in the pipelines that validate and apply the code.
 
-Alongisde the GCS stored files, you can also configure a second copy to be saves on the local filesystem, as a convenience when developing or bringing up the infrastructure before a proper CI/CD setup is in place.
+Alongside the GCS stored files, you can also configure a second copy to be saves on the local filesystem, as a convenience when developing or bringing up the infrastructure before a proper CI/CD setup is in place.
 
 This second set of files is disabled by default, you can enable it by setting the `outputs_location` variable to a valid path on a local filesystem, e.g.
 
